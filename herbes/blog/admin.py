@@ -3,20 +3,17 @@ from .models import Post
 
 # Register your models here.
 
-admin.site.register(Post)
-
 from .models import Post, PostImage
 
-class PostImageAdmin(admin.StackedInline):
+# @admin.register(PostImage)
+class PostImageAdmin(admin.TabularInline): # admin.ModelAdmin
     model = PostImage
 
-@admin.register(Post)
+# @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     inlines = [PostImageAdmin]
 
     class Meta:
        model = Post
 
-@admin.register(PostImage)
-class PostImageAdmin(admin.ModelAdmin):
-    pass
+admin.site.register(Post, PostAdmin)
