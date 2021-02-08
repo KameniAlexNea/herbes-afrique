@@ -12,10 +12,16 @@ from django.views import generic
 from .models import Post, PostImage
  
 def blog_view(request):
+    """
+        Liste toutes les plantes enrégistrées dans la base de données
+    """
     posts = Post.objects.all()
     return render(request, 'blog/blog.html', {'posts':posts})
  
 def detail_view(request, id):
+    """
+        Détail d'une herbe en particulier
+    """
     post = get_object_or_404(Post, id=id)
     photos = PostImage.objects.filter(post=post)
     return render(request, 'blog/detail.html', {

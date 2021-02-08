@@ -9,8 +9,8 @@ class Post(models.Model):
         on_delete=models.CASCADE
     )
     title = models.CharField(max_length=250)
-    text = models.TextField()
-    image = models.ImageField("/resources")
+    description = models.TextField()
+    image = models.ImageField("images/")
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -23,7 +23,7 @@ class Post(models.Model):
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
-    images = models.ImageField(upload_to = '/resources')
+    images = models.ImageField(upload_to = 'images/')
 
     def __str__(self):
         return self.post.title
