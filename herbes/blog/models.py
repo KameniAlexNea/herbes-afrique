@@ -10,7 +10,7 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=250)
     text = models.TextField()
-    image = models.ImageField("./resources")
+    image = models.ImageField("/resources")
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -20,3 +20,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class PostImage(models.Model):
+    post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
+    images = models.ImageField(upload_to = '/resources')
+
+    def __str__(self):
+        return self.post.title

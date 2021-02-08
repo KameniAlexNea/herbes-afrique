@@ -7,6 +7,22 @@ from django.urls import reverse
 from django.views import generic
 
 # Create your views here.
+
+
+from .models import Post, PostImage
+ 
+def blog_view(request):
+    posts = Post.objects.all()
+    return render(request, 'blog/blog.html', {'posts':posts})
+ 
+def detail_view(request, id):
+    post = get_object_or_404(Post, id=id)
+    photos = PostImage.objects.filter(post=post)
+    return render(request, 'blog/detail.html', {
+        'post': post,
+        'photos': photos
+    })
+
 class IndexView(generic.ListView):
     template_name = 'blog/post_list.html'
 
