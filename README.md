@@ -1,2 +1,2 @@
 # herbes-afrique
-Projet Djanga de listing des herbes et leurs qualités
+Projet Django de listing des herbes d'Afrique et leurs qualités
