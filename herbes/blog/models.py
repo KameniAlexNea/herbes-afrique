@@ -9,6 +9,7 @@ class Post(models.Model):
         on_delete=models.CASCADE
     )
     title = models.CharField(max_length=250)
+    accronyme = models.TextField()
     description = models.TextField()
     image = models.ImageField("images/")
     created_date = models.DateTimeField(default=timezone.now)
@@ -20,6 +21,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)

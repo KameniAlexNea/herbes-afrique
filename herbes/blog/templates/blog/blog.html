@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<div class="row row-cols-1 row-cols-md-2">
+<div class="row row-cols-1 row-cols-md-3">
     {% for post in posts %}
     <div class="col mb-4">
         <div class="card">
@@ -12,9 +12,9 @@
                 </a>
             </div>
             <div class="card-body">
-                <h4 class="card-title">{{post.title}}</h4>
-                <p class="card-text">{{post.description}}</p>
-                <a href="{% url 'blog:detail' post.id %}" class="btn btn-primary btn-md">Read more</a>
+                <h4 class="card-title">{{post.title|title}}</h4>
+                <p class="card-text">{{post.description|truncatewords:10}}</p>
+                <a href="{% url 'blog:detail' post.id %}" class="btn btn-primary btn-md">Voir plus</a>
             </div>
         </div>
     </div>

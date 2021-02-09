@@ -1,21 +1,50 @@
 {% block content %}
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="{{post.image.url}}" alt="First slide">
+        </div>
+        {% for p in photos %}
+        <div class="carousel-item">
+            <!-- {% if forloop.counter0 == 0 %} active {% endif %} -->
+            <img class="d-block w-100" src="{{p.images.url}}" alt="First slide">
+        </div>
+        {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
+
 <!--Carousel Wrapper-->
 <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
     <!--Indicators-->
     <ol class="carousel-indicators">
+        <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
         {% for p in photos %}
-        <li data-target="#carousel-example-1z" data-slide-to="{{ forloop.counter0 }}"
-            class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="{{ forloop.counter0|add:'1' }}"></li>
+        <!-- class="{% if forloop.counter0 == 0 %} active {% endif %}" -->
         {% endfor %}
     </ol>
     <!--/.Indicators-->
     <!--Slides-->
-    <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="{{post.image.url}}" alt="First slide">
+        </div>
         {% for p in photos %}
-        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+        <div class="carousel-item ">
+            <!-- {% if forloop.counter0 == 0 %} active {% endif %} -->
             <img class="d-block w-100" src="{{p.images.url}}" alt="First slide">
         </div>
         {% endfor %}
+
         <!--/First slide-->
         <!--/.Slides-->
         <!--Controls-->
@@ -29,5 +58,21 @@
         </a>
         <!--/.Controls-->
     </div>
+</div>
 
-    {% endblock %}
+<div class="card">
+    <div class="card-body">
+
+        <div class="card-title">
+            <h5> {{post.title}} </h5>
+        </div>
+        <p>
+            {{ post.description }}
+        </p>
+    </div>
+    <div class="card-footer text-muted">
+        Créé le : {{ post.created_date|date}} - {{ post.published_date|date}}
+    </div>
+</div>
+
+{% endblock %}
